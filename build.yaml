@@ -1,0 +1,21 @@
+apiVersion: build.dev/v1alpha1
+kind: Build
+metadata:
+  annotations:
+    build.build.dev/build-run-deletion: "true"
+  name: microdnf
+spec:
+  dockerfile: src/main/docker/Dockerfile.multistage
+  output:
+    credentials:
+      name: icr-knbuild
+    image: us.icr.io/knative_jordan/demo-simple:hello
+  source:
+    contextDir: /
+    revision: master
+    url: https://github.com/zhangtbj/code-with-quarkus
+  strategy:
+    kind: ClusterBuildStrategy
+    name: kaniko-large
+  timeout: 10m0s
+

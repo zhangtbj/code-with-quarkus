@@ -1,0 +1,19 @@
+apiVersion: build.dev/v1alpha1
+kind: BuildRun
+metadata:
+  generateName: microdnf-run-
+  generation: 2
+  labels:
+    build.build.dev/generation: "2"
+    build.build.dev/name: microdnf
+spec:
+  buildRef:
+    name: microdnf
+  output:
+    credentials:
+      name: icr-knbuild
+    image: us.icr.io/knative_jordan/demo-simple:hello
+  serviceAccount:
+    generate: true
+  timeout: 2h0m0s
+
